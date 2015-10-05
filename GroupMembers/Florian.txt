@@ -1,0 +1,23 @@
+I wanted to have a usable CSV file, in which the necessary information was given in columns. After a search on the internet, I came up with this:
+$ sed -E 's/ {2,}/	/g' ratings_top250.txt > ratings_top250.a.csv
+Here I replaced instances of two or more spaces with a tab.
+This worked almost flawlessly, except for the fact that my first column existed of nothing. To get rid of this, and unnecessary columns, I did the following:
+$ cat ratings_top250.a.csv | cut -f 5 > top250a.txt
+Here I selected just the important column and save it to a new file.
+Next, I deleted the release years:
+$ cat top250a.txt | sed -E 's/ \([0-9]+\)//g' > top250b.txt
+
+After this I moved on to the large file, containing all films, series, documentaries, etc. on IMDB. It took me quite some research to find out which commands I needed to filter out just the movies, and I'm not even there yet. But the list I have right now can be found in Files/LargeList.txt
+Since I work on a Mac, I used GNU Coreutils for convenience. I used, for example, gtac and gsed to get rid of series by first reverting the list, then deleting all the lines containing a '#'â™ and the line directly following it, and reverting the list back again.
+LargeList.txt contains about 300000 lines, which is less than half of the original files retrieved from IMDB. But this would still take over 8hrs if we were to run it through the OMDBapi with 10 requests per second.
+
+Examples of commands I used:
+# remove all lines containing a '#', since those are almost always names of series episodes, and the series' name on the preceding line
+$ gtac ratings.c_copy.txt | gsed '/#/,+1 d' | gtac > ratings.c_copy2.txt
+
+# remove all lines containing '(TV)' and the TV show's name on the preceding line
+$ gtac ratings.c_copy2.txt | gsed '/\(TV\)/d' | gtac > ratings.c_copy3.txt
+
+# remove all line containing a form of '(2012/II)' or the like, since they are part of series or documentaries.
+$ gsed '/\([0-9]*\/.*\)/d' < ratings.c_copy4.txt > ratings.c_copy5.txt
+

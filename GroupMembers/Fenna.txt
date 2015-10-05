@@ -1,0 +1,15 @@
+In order to answer the research question: What is the connection between rating, genre and release date, we first needed to find a good dataset. Since IMDB is not providing any, we chose OMDBapi which gives you access to the IMDB database.
+
+With the OMDBapi you can only search movies by title. For each movie title, it will give you several parameters. So first we downloaded a list with all the titles IMDB has. (Since this list is very extensive, and will take a lot of time to pass trough the API, we are thinking about making a (random) sample.)
+
+To combine the dataset of movies with the API we have to loop the dataset of movies(in a list) trough the OMDBapi to receive a dataset with information about all the movies:
+for i in $film; do curl -s "http://www.omdbapi.com/?t=$film&y=&plot=short&r=json"; done | jq '.'
+($film = list of films)
+
+Here we got a few obstacles. The list of IMDB consists movies and series with release year in the name. We have to cut the year and the series in order to loop it trough the API to get the right results. To cut the series, we will remove all the names which occur more than once, excepting sequels and the like.
+
+Also we had to replace a space for a +, and put the API between double quotation marks in order to prevent problems with single apostrophes in movie titles.
+We hope to retrieve the final dataset this Wednesday, so we are able to look at the relation between rating, genre and release date. At the end, the goal is to get a nice overview of the relation between the factors in several visualisations. 
+
+By now we haven't had the opportunity yet to get any results for answering the research question.
+

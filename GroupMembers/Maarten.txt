@@ -1,0 +1,11 @@
+RQ We would like to look at a few aspects that may or may not be influential to the rating/popularity of films.
+
+Sub RQ: Are films that are longer than average rated higher than fims that are shorter than average?
+
+I have tried to keep my research question doable and quantifyable. It should be doable to find data about movielenghts combined with movieratings. I figured that I need a script that outputs movietitles between 1993 and 2013 (to cover roughly contemporary films) combined with their runningtimes. The IMDb seemd the most appropiate source to do this with. I looked on the internet and foud out that I could use an API from the OMDb http://omdbapi.com/ an unofficial site that usues data from the IMDb database).
+
+I could get this API to work for me but it seems that the search options are limited to do a titlesearch (which you may refine with different parameters). For my query I need to 'search' only for a year (and repeat that several times) but trying to de that the API only returns movititles with the number of the year in the title. Also I tested if an iteration of a query would work to use it later on i a script. The API does not seem to support sending an output in multiple pages: when I tried to query another page, it just came back with the same results. 
+
+I don't think the wget command will take me far at this point since I don't have any returned data yet. Webscraping might of course be an option but I have't had time to install the software. I wil try to install Scrapy though. So I got a little stuck, not knowing what to do next and unable to write a script yet. I want to proceed with using another API from the Rotten Tomatoes site, as was advised by mr. Koolen. The seem to have more searc options. Also one of my group members advised me to work with variables, written in the API request of OMDb. I will also try that. I'm sorry to sat that my experiences were a bit dissapointing, but please understand this is all new to me.
+
+Maarten

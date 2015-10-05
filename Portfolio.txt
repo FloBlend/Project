@@ -1,0 +1,59 @@
+>> Project MovieRatings <<
+Florian Blom, Maarten van Esse, Fenna Levenbach, Martijn Muller
+
+> Introduction
+We came to form this group because of shared interest in Hollywood productions.
+We had four completely different research questions in mind, but after careful consideration we decided this should not be a hindrance.
+Hence, our research consists of three different inquiries, encapsulated in the research question:
+
+What external factors influence movie appreciation?
+
+Within our project, we look at three possible factors:
+1. the movie's duration
+2. the movie's genre
+3. the death of an actor starring in the movie
+
+> Method
+The 1st thing we needed, was an appropriate dataset.
+We immediately thought of the Internet Movie Database (IMDB).
+IMDB is probably the largest and most popular database for movie data.
+Unfortunately, we discovered, there are only third-party APIs allowing access to IMDB's data.
+So we settled for OMDBapi, which was the most accessible.
+Additionally, we can use the Rotten Tomatoes API for data unavailable through OMDBapi.
+To gather reviews of movies, we use the Amazon API, since they have a vast collection of movies and their reviews.
+
+The 2nd thing to do, was to filter the gathered data.
+From a German site containing actual IMDB files, we retrieved the complete list of all movies, series, documentaries, etc. that are on IMDB.
+This list is over 45MB in size; way too extensive.
+And this is where we stranded.
+We do not yet have a list containing all movies on IMDB and nothing else.
+The work on the filtering-script is still ongoing.
+
+The 3rd step in the process is to use the filtered dataset to obtain the desired results.
+As soon as our movielist is finished, we will use URL requests to gather data about:
+- movie duration (OMDBapi)
+- movie genre (OMDBapi)
+- movie rating (OMDBapi)
+- deceased actors (OMDBapi)
+- reviews (Amazon)
+We will most likely ask OMDBapi to only sent back data about movies, in order to be sure that no non-movie data affects the results.
+Therefore we would have to add the condition of something like 'only if kind="film"' to the requesting-script.
+
+The 4th and final step is to interpret the results and visualize them appropriately.
+We have not yet given this step any though yet, as it's yet so far away.
+
+> Discussion
+This discussion is not about the results, as we do not have any yet.
+The problems we encountered are mainly in the data-filtering part.
+We would really like to have a movielist as complete as possible, but at the same time as clean as possible.
+Filtering out everything that is not a movie turns out to be a hard task.
+Eventually we will get there though, preferably before wednesday October 7th.
+
+We have already learned that choosing the right dataset is half the work.
+Maybe we will have to reduce our research to just one of the sub-questions if there is too little time left.
+
+> Comments
+In the GroupMembers folder you can find the individual status-updates of the group members.
+They contain used commands and codes, which will later be merged into scripts.
+
+In the Files folder you can find datafiles we are using for our research.

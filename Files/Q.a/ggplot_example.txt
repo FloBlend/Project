@@ -1,0 +1,13 @@
+RateRun.1 <- ggplot(data=lijst,
+			aes(x = lijst$imdbRating,
+			y = lijst$Runtime)) +
+		ylab("Runtime") +
+		xlab("Rating") +
+		geom_point() +
+		theme_bw(base_size = 8) +
+			geom_smooth(method = "glm",
+				family = gaussian(link="log"),
+			aes(colour = "Exponential")) +
+		scale_color_manual(name = "Fits",
+		breaks = c("Exponential"),
+		values = c("red"))

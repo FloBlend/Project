@@ -1,0 +1,39 @@
+ÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐ
+#List with movies:
+cat ratings.list | cut -f 4 > SampleList.txt
+
+#Problem: Too much movies, error
+#random sample
+perl -ne 'print if(rand()<0.0003)' List.txt>SampleList.txt
+
+#Problem: Only API for one film a time or a list
+#Making list of movies
+while read line; do film+=$line,; done < SampleList.txt
+
+#Problem: Not reading movies with spaces
+#Replace space for +
+sed 's/\ /\+/g' SampleList.txt > SampleList.txt
+
+#retrieving information about movies
+for i in $film; do curl -s "http://www.omdbapi.com/?t={$film}&y=&plot=short&r=json"; done | jq '.' > MovieList.json
+
+#Problem: Not readable Json file
+#Leesbaar Json bestand
+cat MovieList.json | sed 's/}/},/g' > MovieList.json 
+
+#Problem: Both series and movies in dataset, empty cells, too much information
+#filtering series, filtering empty cells, selectering needed parameters. 
+cat MovieList.json | jq '.[] | select(.Type=="movie") | select(.Response=="True") | select(.Runtime!="N/A")|
+select(.Genre!="N/A") | select(.imdbRating!="N/A") | select(.Year!="N/A") | {Title,Genre,Runtime,imdbRating,Year}' > MovieList.json
+
+#Problem Runtime not numeric by 'min', not workable in R
+#Runtime string convert to numeric
+sed 's/\min/\ /g' MovieList.json > MovieList.json
+
+ÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐ
+# Rstudio
+# make Genre a type for colouring
+genres <- factor(lijst$Genre)
+
+# r
+
